@@ -1,7 +1,7 @@
 "use client";
 
-import Navigation from "../components/Navigation";
 import Link from "next/link";
+import Navigation from "../components/Navigation";
 
 export default function TestsPage() {
   return (
@@ -12,7 +12,7 @@ export default function TestsPage() {
         </h1>
 
         {/* Metodik yondashuv */}
-        <Link href="/tests/metodik">
+        <Link href="/quiz/metodik">
           <div
             style={{
               background: "#e0f2fe",
@@ -35,7 +35,7 @@ export default function TestsPage() {
         </Link>
 
         {/* Psixologiya */}
-        <Link href="/tests/psixologiya">
+        <Link href="/quiz/psixologiya">
           <div
             style={{
               background: "#d1fae5",
@@ -58,6 +58,7 @@ export default function TestsPage() {
         </Link>
       </div>
 
+      {/* Pastki Navigation */}
       <Navigation />
     </div>
   );
