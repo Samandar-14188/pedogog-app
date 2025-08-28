@@ -1,6 +1,10 @@
+import Navigation from "../components/Navigation";
 
-export default function Profil() {
+export default function Profile() {
   return (
-    <div>Profil</div>
-  )
+    <div style={{ paddingBottom: "70px" }}>
+      <h1>Profil sahifasi</h1>
+      <Navigation />
+    </div>
+  );
 }

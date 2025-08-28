@@ -1,0 +1,76 @@
+/* faqat mobil uchun ko'rsatadi: */
+@media (min-width: 769px) {
+    .mobile-bottom-nav {
+      display: none;
+    }
+  }
+  
+  /* pastki nav umumiy uslubi */
+  .mobile-bottom-nav {
+    position: fixed;
+    bottom: 12px; /* biroz ichkarida ko'rinishi uchun */
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 32px);
+    max-width: 760px; /* agar xohlasangiz */
+    z-index: 9999;
+    pointer-events: auto;
+  }
+  
+  /* konteyner: yengil blur va radius */
+  .mobile-bottom-nav-inner {
+    display: flex;
+    justify-content: space-between;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(6px);
+    border-radius: 14px;
+    padding: 8px 10px;
+    box-shadow: 0 6px 18px rgba(20,20,30,0.08);
+    align-items: center;
+  }
+  
+  /* har bir item tugma uslubi */
+  .nav-item {
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 6px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    flex: 1;
+    color: #667085; /* nofaol rang */
+    font-size: 12px;
+    transition: color 0.18s ease, transform 0.12s ease;
+  }
+  
+  /* ikonani biroz kattalashtirish */
+  .icon-wrapper {
+    font-size: 20px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* aktiv holat */
+  .nav-item.active {
+    color: #2f6cff; /* aktiv rangni o'zgartiring (masalan moviy) */
+    transform: translateY(-2px);
+  }
+  
+  /* kichik ekranlarda label qisqaroq ko'rinishi uchun */
+  .nav-label {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Touch-friendly: katta touch zona */
+  .nav-item:active {
+    transform: scale(0.98);
+  }
+  
