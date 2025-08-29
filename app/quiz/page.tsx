@@ -28,9 +28,7 @@ export default function TestsPage() {
             <p style={{ fontSize: "14px", color: "#374151" }}>
               Zamonaviy o‘qitish metodlari va yondashuvlari bo‘yicha testlar
             </p>
-            <p style={{ fontSize: "13px", color: "#2563eb", marginTop: "6px" }}>
-              🔵 25 ta savol
-            </p>
+           
           </div>
         </Link>
 
@@ -51,9 +49,7 @@ export default function TestsPage() {
             <p style={{ fontSize: "14px", color: "#374151" }}>
               Bolalar psixologiyasi va pedagogik psixologiya bo‘yicha testlar
             </p>
-            <p style={{ fontSize: "13px", color: "#059669", marginTop: "6px" }}>
-              🔵 30 ta savol
-            </p>
+          
           </div>
         </Link>
       </div>
