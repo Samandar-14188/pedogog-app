@@ -1,11 +1,31 @@
 "use client";
 
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, message } from "antd";
+import { useRouter } from "next/navigation";
 
 export default function Signup() {
-  const onFinish = (values: any) => {
-    console.log("Ro‘yxatdan o‘tish ma'lumotlari:", values);
-    // bu yerda backend API chaqirib, foydalanuvchini bazaga qo‘shish mumkin
+  const router = useRouter();
+
+  const onFinish = async (values: any) => {
+    try {
+      const res = await fetch("https://pedagogika-backend.onrender.com/users/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        message.success("Ro‘yxatdan muvaffaqiyatli o‘tdingiz!");
+        router.push("/signin"); // foydalanuvchini login sahifasiga yuboramiz
+      } else {
+        message.error(data.message || "Xatolik yuz berdi!");
+      }
+    } catch (err) {
+      message.error("Server bilan bog‘lanishda xatolik!");
+      console.error(err);
+    }
   };
 
   return (
@@ -30,11 +50,7 @@ export default function Signup() {
       >
         <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Ro‘yxatdan o‘tish</h2>
 
-        <Form
-          name="signup"
-          layout="vertical"
-          onFinish={onFinish}
-        >
+        <Form name="signup" layout="vertical" onFinish={onFinish}>
           <Form.Item
             label="Ism"
             name="name"
@@ -47,10 +63,10 @@ export default function Signup() {
             label="Telefon raqam"
             name="phone"
             rules={[
-              { required: true, message: "Iltimos, telefon raqamingizni kiriting!" },
+              { required: true, message: "Telefon raqamingizni kiriting!" },
               {
                 pattern: /^(\+998|998)?[0-9]{9}$/,
-                message: "Telefon raqam formati noto‘g‘ri! (masalan: +998901234567)",
+                message: "Telefon raqam noto‘g‘ri! (+998901234567)",
               },
             ]}
           >
@@ -61,25 +77,6 @@ export default function Signup() {
             label="Parol"
             name="password"
             rules={[{ required: true, message: "Parolni kiriting!" }]}
-          >
-            <Input.Password placeholder="********" />
-          </Form.Item>
-
-          <Form.Item
-            label="Parolni tasdiqlash"
-            name="confirmPassword"
-            dependencies={["password"]}
-            rules={[
-              { required: true, message: "Parolni qayta kiriting!" },
-              ({ getFieldValue }) => ({
-                validator(_, value) {
-                  if (!value || getFieldValue("password") === value) {
-                    return Promise.resolve();
-                  }
-                  return Promise.reject(new Error("Parollar mos emas!"));
-                },
-              }),
-            ]}
           >
             <Input.Password placeholder="********" />
           </Form.Item>
