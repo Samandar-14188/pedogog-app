@@ -1,5 +1,6 @@
 "use client";
 
+import Navigation from "@/app/components/Navigation";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -19,7 +20,14 @@ export default function TestPage() {
 
         // faqat shu section bo‘yicha filterlash
         const filtered = data.filter((q: any) => q.section === section);
-        setQuestions(filtered);
+
+        // shuffle qilish funksiyasi
+        const shuffleArray = (arr: any[]) => arr.sort(() => Math.random() - 0.5);
+
+        // 10 tasini olish (agar kam bo‘lsa, borini chiqaradi)
+        const limited = shuffleArray(filtered).slice(0, 10);
+
+        setQuestions(limited);
       } catch (err) {
         console.error("Xatolik:", err);
       } finally {
@@ -118,6 +126,7 @@ export default function TestPage() {
           )}
         </div>
       )}
+      <Navigation />
     </div>
   );
 }

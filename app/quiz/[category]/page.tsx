@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Navigation from "@/app/components/Navigation";
 
 export default function SectionPage() {
   const { category } = useParams(); // masalan: metodik yoki psixologiya
@@ -60,6 +61,7 @@ export default function SectionPage() {
           </Link>
         ))
       )}
+      <Navigation />
     </div>
   );
 }
